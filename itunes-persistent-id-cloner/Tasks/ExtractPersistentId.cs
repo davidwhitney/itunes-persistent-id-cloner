@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using itunes_persistent_id_cloner.Core;
 
 namespace itunes_persistent_id_cloner.Tasks
@@ -12,10 +9,19 @@ namespace itunes_persistent_id_cloner.Tasks
         {
             Console.WriteLine("Extracting iTunes persistent id..." + Environment.NewLine);
 
-            var locator = new TunesLibraryAdapter();
-            var summary = locator.GenerateLibrarySummary();
+            var preferenceFileSource = new PreferencesFileSource();
 
-            Console.WriteLine("Your iTunes Persistent Id is: " + summary.LibraryPersistentId.ToLower());
+            if (!preferenceFileSource.Exists())
+            {
+                Console.WriteLine("iTunes either isn't installed, or hasn't been run for the first time. Do that and come back.");
+            }
+            else
+            {
+                var adapter = new TunesLibraryAdapter();
+                var summary = adapter.GenerateLibrarySummary();
+
+                Console.WriteLine("Your iTunes Persistent Id is: " + summary.LibraryPersistentId.ToLower());
+            }
         }
     }
 }
