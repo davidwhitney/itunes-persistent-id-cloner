@@ -9,9 +9,9 @@ namespace itunes_persistent_id_cloner.Tasks
         {
             Console.WriteLine("Please make sure iTunes is not running.");
             Console.Write("Please enter your previously extracted Id: ");
-            
-            var persistentId = Console.ReadLine().Trim();
-            
+
+            var persistentId = args.Length == 2 ? args[1] : Console.ReadLine().Trim();
+
             var adapter = new TunesLibraryAdapter();
             adapter.PatchLibraryToPersistentId(persistentId);
         }
