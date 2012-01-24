@@ -33,6 +33,10 @@ namespace itunes_persistent_id_cloner.Core
         {
             var summary = GenerateLibrarySummary();
 
+            var xmlFile = File.ReadAllText(summary.XmlFile);
+            xmlFile = xmlFile.Replace(summary.LibraryPersistentId, persistentId.ToUpper());
+            File.WriteAllText(summary.XmlFile, xmlFile);
+
             var bytes = File.ReadAllBytes(summary.ItlFile);
 
             var listOBytes = BytesToHex(bytes);
