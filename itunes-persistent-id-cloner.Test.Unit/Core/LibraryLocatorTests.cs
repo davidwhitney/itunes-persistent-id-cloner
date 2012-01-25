@@ -25,7 +25,7 @@ namespace itunes_persistent_id_cloner.Test.Unit.Core
         {
             var adapter = new TunesLibraryAdapter();
 
-            adapter.PatchLibraryToPersistentId("0352D98CCD98774B");
+            adapter.PatchLibraryToPersistentId("xxx");
         }
     }
 }
